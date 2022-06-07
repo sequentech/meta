@@ -1,7 +1,8 @@
 # Sequent public roadmap
 
 :sparkle: [Sequent public product roadmap](https://github.com/orgs/sequentech/projects/2)
-:sparkle: [Sequent public feedback discussions](https://github.com/sequentech/roadmap/discussions/1). 
+
+:sparkle: [Sequent public feedback discussions](https://github.com/sequentech/roadmap/discussions/1) 
 
 The roadmap repository is for communicating Sequent's roadmap. Our product roadmap is where you can learn about what features we're working on, what stage they're in, and when we expect to bring them to you. Have any questions or comments about items on the roadmap? Share your feedback via [Sequent public feedback discussions](https://github.com/sequentech/roadmap/discussions/1). 
 
