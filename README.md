@@ -1,4 +1,4 @@
-# Sequent public roadmap
+# Sequent Public Product Roadmap
 
 :sparkle: [Sequent public product roadmap](https://github.com/orgs/sequentech/projects/2)
 
