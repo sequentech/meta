@@ -7,11 +7,13 @@ name: update-flake-lock
 on:
   workflow_call:
     inputs:
-      config-path:
+      cachix-auth-identity:
         required: true
         type: string
     secrets:
-      envPAT:
+      cachix-auth-token:
+        required: true
+      gh-token-for-updates:
         required: true
 
 jobs:
@@ -26,13 +28,13 @@ jobs:
       
       - uses: cachix/cachix-action@v12
         with:
-          name: sequenttech
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          name: '${{ inputs.cachix-auth-identity }}''
+          authToken: '${{ secrets.cachix-auth-token }}'
       
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v16
         with:
-          token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
+          token: ${{ secrets.gh-token-for-updates }}
           pr-title: "Update flake.lock" # Title of PR to be created
           pr-labels: |                  # Labels to be set on the PR
             dependencies
