@@ -24,6 +24,7 @@ on:
       cachix-auth-token:
         required: true
 
+jobs:
   rust_lints:
     name: 'Static Analysis: cargo fmt & clippy'
     runs-on: ubuntu-latest
