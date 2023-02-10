@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name: update-flake
+name: 'Update flake.lock'
 on:
   workflow_call:
     inputs:
@@ -17,8 +17,12 @@ on:
         required: true
 
 jobs:
-  lockfile:
-    runs-on: ubuntu-latest
+  update-flake:
+    name: 'Update flake.lock'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3

@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name: cargo-check
+name: Cargo check
 on:
   workflow_call:
     inputs:

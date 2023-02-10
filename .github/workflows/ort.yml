@@ -1,0 +1,40 @@
+# SPDX-FileCopyrightText: 2014-2023 Eduardo Robles <edu@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: ORT
+on:
+  workflow_call:
+    inputs:
+      ort-cli-args:
+        required: true
+        type: string
+
+jobs:
+  ort:
+    name: 'Static Analysis: Dependency License Scan with ORT'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Use HTTPS instead of SSH for Git cloning
+        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+
+      - uses: actions/checkout@v3
+
+      - name: Run GitHub Action for ORT
+        uses: oss-review-toolkit/ort-ci-github-action@v1
+        with:
+          run: > # remove the advisor step since we are not using it
+            cache-dependencies,
+            labels,
+            analyzer,
+            evaluator,
+            reporter,
+            upload-results
+          log-level: debug
+          ort-config-repository: 'https://github.com/sequentech/meta.git'
+          fail-on: issues,violations
+          report-formats: SpdxDocument,Excel,StaticHtml,WebApp
+          ort-cli-args: ${{ inputs.ort-cli-args }}

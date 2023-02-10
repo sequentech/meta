@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name: code-coverage
+name: Coverage
 on:
   workflow_call:
     inputs:
@@ -23,7 +23,10 @@ jobs:
   # based on https://github.com/actions-rs/example
   coverage:
     name: Test Coverage
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
