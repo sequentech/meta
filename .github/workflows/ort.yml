@@ -9,6 +9,11 @@ on:
       ort-cli-args:
         required: true
         type: string
+      ort-cli-analyze-args:
+        default: ''
+        description: |
+          List of arguments to pass to ORT Analyzer CLI.
+        required: false
 
 jobs:
   ort:
@@ -38,3 +43,4 @@ jobs:
           fail-on: issues,violations
           report-formats: SpdxDocument,Excel,StaticHtml,WebApp
           ort-cli-args: ${{ inputs.ort-cli-args }}
+          ort-cli-analyze-args: ${{ inputs.ort-cli-analyze-args }}
