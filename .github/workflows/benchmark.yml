@@ -16,13 +16,17 @@ on:
         default: true
         required: false
         type: boolean
-      cargo-bench-args:
-        description: 'List of arguments to pass to cargo bench'
-        default: ''
+      cargo-bench-command:
+        description: 'Cargo bench command to run'
+        default: 'cargo bench -- --output-format bencher | tee output.txt'
         required: false
         type: string
       alert-threshold:
-        description: 'Threshold which determines if an alert should happen or not. Percentage value such as "150%". For example, 150% means that an alert happens when current benchmark result is 1.5x worse than previous'
+        description: |
+          Threshold which determines if an alert should happen or not.
+          Percentage value such as "150%". For example, 150% means that an
+          alert happens when current benchmark result is 1.5x worse than
+          previous
         default: '200%'
         required: false
         type: string
@@ -61,8 +65,7 @@ jobs:
         nix \
           --extra-experimental-features "nix-command flakes" \
           develop \
-          --command bash -c "TRACING_LEVEL=error cargo bench \
-            ${{ inputs.cargo-bench-args }} -- --output-format bencher | tee output.txt"
+          --command bash -c "${{ inputs.cargo-bench-command }}"
 
     - name: Download previous benchmark data
       uses: actions/cache@v3
