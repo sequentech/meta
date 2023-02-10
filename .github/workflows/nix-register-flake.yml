@@ -19,7 +19,8 @@ on:
       cachix-auth-token:
         required: true
 
-  nix_flake_info:
+jobs:
+  nix-register-flake:
     name: Register Nix Flake Information
     strategy:
       matrix:
