@@ -1,0 +1,69 @@
+# SPDX-FileCopyrightText: 2021-2023 Eduardo Robles <edu@sequentech.io>
+# SPDX-FileCopyrightText: 2022 Félix Robles <felix@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: lint
+on:
+  workflow_call:
+    inputs:
+      # This input is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-identity:
+        description: 'Name of a cachix cache to push and pull/substitute'
+        required: true
+        type: string
+      rust:
+        description: 'Run Rust unit tests'
+        default: true
+        required: false
+        type: boolean
+    secrets:
+      # This secret is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-token:
+        required: true
+
+  rust_lints:
+    name: 'Static Analysis: cargo fmt & clippy'
+    runs-on: ubuntu-latest
+    if: ${{ inputs.rust }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use locked cargo package versions known to work
+        run: cargo clean && cp Cargo.lock.copy Cargo.lock
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install extra dependencies
+        run: cargo install clippy-sarif sarif-fmt
+
+      - name: Check code styling with cargo fmt
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+      - name: Run cargo clippy
+        run:
+          cargo clippy
+            --message-format=json
+            -- -D warnings | clippy-sarif | tee rust-clippy-results.sarif | sarif-fmt
+        continue-on-error: true
+
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: rust-clippy-results.sarif
+          wait-for-processing: true
+          category: cargo-clippy
