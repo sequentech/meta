@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2021-2023 Eduardo Robles <edu@sequentech.io>
+# SPDX-FileCopyrightText: 2022 Félix Robles <felix@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: Register Nix Flake Information
+on:
+  workflow_call:
+    inputs:
+      # This input is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-identity:
+        description: 'Name of a cachix cache to push and pull/substitute'
+        required: true
+        type: string
+    secrets:
+      # This secret is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-token:
+        required: true
+
+jobs:
+  nix_flake_build:
+    name: Build Nix Flake
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v17
+      with:
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220629_b7eb4ac/install
+        nix_path: nixpkgs=channel:nixos-22.05
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+
+    - uses: cachix/cachix-action@v12
+      with:
+        name: '${{ inputs.cachix-auth-identity }}'
+        authToken: '${{ secrets.cachix-auth-token }}'
+
+    - name: Build the flake
+      run: nix --extra-experimental-features "nix-command flakes" build -L
