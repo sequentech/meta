@@ -1,0 +1,56 @@
+# SPDX-FileCopyrightText: 2021-2023 Eduardo Robles <edu@sequentech.io>
+# SPDX-FileCopyrightText: 2022 Félix Robles <felix@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: code-coverage
+on:
+  workflow_call:
+    inputs:
+      # This input is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-identity:
+        description: 'Name of a cachix cache to push and pull/substitute'
+        required: true
+        type: string
+    secrets:
+      # This secret is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-token:
+        required: true
+
+jobs:
+  # based on https://github.com/actions-rs/example
+  coverage:
+    name: Test Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Run cargo-tarpaulin
+        uses: actions-rs/tarpaulin@v0.1
+        continue-on-error: true
+        with:
+          version: '0.15.0'
+          args: '-- --test-threads 4'
+
+      - uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: True
+          verbose: true
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: cobertura.xml
