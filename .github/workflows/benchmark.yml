@@ -62,7 +62,7 @@ jobs:
           --extra-experimental-features "nix-command flakes" \
           develop \
           --command bash -c "TRACING_LEVEL=error cargo bench \
-            ${{ inputs.cargo-bench-args }}
+            ${{ inputs.cargo-bench-args }} \
             -- --output-format bencher | tee output.txt"
 
     - name: Download previous benchmark data
