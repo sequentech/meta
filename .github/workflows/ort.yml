@@ -17,6 +17,7 @@ on:
         description: |
           List of arguments to pass to ORT Analyzer CLI.
         required: false
+        type: string
 
 jobs:
   ort:
