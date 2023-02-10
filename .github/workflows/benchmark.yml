@@ -1,0 +1,84 @@
+# SPDX-FileCopyrightText: 2021-2023 Eduardo Robles <edu@sequentech.io>
+# SPDX-FileCopyrightText: 2022 Félix Robles <felix@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: Cargo check
+on:
+  workflow_call:
+    inputs:
+      cachix-auth-identity:
+        description: 'Name of a cachix cache to push and pull/substitute'
+        required: true
+        type: string
+      rust:
+        description: 'Run Rust unit tests'
+        default: true
+        required: false
+        type: boolean
+      cargo-bench-args:
+        description: 'List of arguments to pass to cargo bench'
+        default: ''
+        required: false
+        type: string
+      alert-threshold:
+        description: 'Threshold which determines if an alert should happen or not. Percentage value such as "150%". For example, 150% means that an alert happens when current benchmark result is 1.5x worse than previous'
+        default: '200%'
+        required: false
+        type: string
+    secrets:
+      cachix-auth-token:
+        required: true
+      github-token:
+        required: true
+jobs:
+  rust_benchmark:
+    name: Rust Benchmark
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    if: ${{ inputs.rust }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: cachix/install-nix-action@v17
+      with:
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220629_b7eb4ac/install
+        nix_path: nixpkgs=channel:nixos-22.05
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+
+    - uses: cachix/cachix-action@v12
+      with:
+        name: '${{ inputs.cachix-auth-identity }}'
+        authToken: '${{ secrets.cachix-auth-token }}'
+
+    - uses: Swatinem/rust-cache@v2
+
+    - name: Run cargo bench
+      run: |
+        nix \
+          --extra-experimental-features "nix-command flakes" \
+          develop \
+          --command bash -c "TRACING_LEVEL=error cargo bench \
+            ${{ inputs.cargo-bench-args }}
+            -- --output-format bencher | tee output.txt"
+
+    - name: Download previous benchmark data
+      uses: actions/cache@v3
+      with:
+        path: ./cache
+        key: cargo-bench
+
+    - name: Store benchmark result
+      uses: benchmark-action/github-action-benchmark@v1
+      with:
+        name: cargo-bench
+        tool: 'cargo'
+        output-file-path: ./output.txt
+        github-token: '${{ secrets.github-token }}'
+        external-data-json-path: ./cache/benchmark-data.json
+        alert-threshold: '${{ inputs.alert-threshold }}'
+        comment-on-alert: true
+        fail-on-alert: false
