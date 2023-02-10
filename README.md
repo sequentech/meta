@@ -57,5 +57,4 @@ to make any purchasing decision.
 [organization level]: https://github.com/organizations/sequentech/settings/secrets/actions
 [update-flake.yml action]: https://github.com/sequentech/bulletin-board/blob/main/.github/workflows/update-flake.yml
 [Sequent public product roadmap]: https://github.com/orgs/sequentech/projects/2
-[Sequent public feedback discussions]: https://github.com/sequentech/meta/discussions/1)
 [Sequent public feedback discussions]: https://github.com/sequentech/meta/discussions/1
