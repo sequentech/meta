@@ -16,6 +16,11 @@ on:
         default: true
         required: false
         type: boolean
+      rust-command:
+        description: 'Command to execute'
+        default: 'cargo test --all-features'
+        required: false
+        type: string
     secrets:
       cachix-auth-token:
         required: true
@@ -48,4 +53,4 @@ jobs:
         nix \
           --extra-experimental-features "nix-command flakes" \
           develop \
-          --command bash -c "cargo test --all-features"
+          --command bash -c "${{ inputs.rust-command }}"
