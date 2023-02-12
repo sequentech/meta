@@ -40,11 +40,8 @@ jobs:
         run: cargo clean && cp Cargo.lock.copy Cargo.lock
 
       - name: Install stable toolchain
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
-          toolchain: stable
-          override: true
           components: rustfmt, clippy
 
       - uses: Swatinem/rust-cache@v2
@@ -53,10 +50,7 @@ jobs:
         run: cargo install clippy-sarif sarif-fmt
 
       - name: Check code styling with cargo fmt
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
+        run: cargo fmt --all -- --check
 
       - name: Run cargo clippy
         run:
