@@ -36,8 +36,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Use locked cargo package versions known to work
-        run: cargo clean && cp Cargo.lock.copy Cargo.lock
+      - name: Check if Cargo.lock.copy exists
+        id: check_cargo_lock_copy
+        uses: andstor/file-existence-action@v2
+        with:
+          files: Cargo.lock.copy
+
+      - name: File exists
+        if: steps.check_cargo_lock_copy.outputs.files_exists == 'true'
+        # Only runs if all of the files exists
+        run: cp Cargo.lock.copy Cargo.lock
 
       - name: Install stable toolchain
         uses: dtolnay/rust-toolchain@stable
