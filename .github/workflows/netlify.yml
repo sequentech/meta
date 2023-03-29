@@ -69,7 +69,7 @@ jobs:
       with:
         production-branch: 'main'
         production-deploy: ${{ github.ref_name == 'main' }}
-        publish-dir: './build'
+        publish-dir: ${{ inputs.output-dir }}
         github-token: ${{ secrets.github-token }}
         deploy-message: 'Deploy from GitHub Actions'
         enable-pull-request-comment: true
