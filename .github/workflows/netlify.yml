@@ -77,4 +77,4 @@ jobs:
         enable-commit-status: true
         enable-github-deployment: true
         fails-without-credentials: true
-      timeout-minutes: 3
+      # timeout-minutes: 3
