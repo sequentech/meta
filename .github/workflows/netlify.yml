@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2023 Eduardo Robles <edu@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: Netlify
+on:
+  workflow_call:
+    inputs:
+      command:
+        description: 'Shell command to execute to build the output that will be uploaded to netlify'
+        default: 'cargo doc && cp target/doc/ .build/'
+        required: false
+        type: string
+      output-dir:
+        description: 'Directory produced by the command and to be uploaded to netlify'
+        default: '.build/'
+        required: false
+        type: string
+    secrets:
+      cachix-auth-token:
+        required: true
+      netlify-auth-token:
+        required: true
+      netlify-site-id:
+        required: true
+      github-token:
+        required: true
+
+jobs:
+  netlify:
+    name: 'Deploy: netlify'
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: cachix/install-nix-action@v19
+      with:
+        install_url: https://github.com/numtide/nix-unstable-installer/releases/download/nix-2.10.0pre20220629_b7eb4ac/install
+        nix_path: nixpkgs=channel:nixos-22.05
+        extra_nix_config: |
+          experimental-features = nix-command flakes
+
+    - uses: cachix/cachix-action@v12
+      with:
+        name: '${{ inputs.cachix-auth-identity }}'
+        authToken: '${{ secrets.cachix-auth-token }}'
+
+    - name: Run build command in nix
+      run: |
+        nix \
+          --extra-experimental-features "nix-command flakes" \
+          develop \
+          --command bash -c "${{ inputs.command }}"
+          
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.netlify-auth-token }}
+        NETLIFY_SITE_ID: ${{ secrets.netlify-site-id }}
+      with:
+        production-branch: 'main'
+        production-deploy: ${{ github.ref_name == 'main' }}
+        publish-dir: './build'
+        github-token: ${{ secrets.github-token }}
+        deploy-message: 'Deploy from GitHub Actions'
+        enable-pull-request-comment: true
+        enable-commit-comment: true
+        enable-commit-status: true
+        enable-github-deployment: true
+        fails-without-credentials: true
+      timeout-minutes: 1
