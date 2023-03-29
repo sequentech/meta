@@ -6,6 +6,12 @@ name: Netlify
 on:
   workflow_call:
     inputs:
+      # This input is not used yet, but making it future proof, when we use nix
+      # cache for this action.
+      cachix-auth-identity:
+        description: 'Name of a cachix cache to push and pull/substitute'
+        required: true
+        type: string
       command:
         description: 'Shell command to execute to build the output that will be uploaded to netlify'
         default: 'cargo doc && cp target/doc/ .build/'
