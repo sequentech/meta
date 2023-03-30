@@ -13,12 +13,16 @@ on:
         required: true
         type: string
       command:
-        description: 'Shell command to execute to build the output that will be uploaded to netlify'
+        description: |
+          Shell command to execute to build the output that will be uploaded to
+          netlify
         default: 'cargo doc && cp target/doc/ .build/'
         required: false
         type: string
       output-dir:
-        description: 'Directory produced by the command and to be uploaded to netlify'
+        description: |
+          Path to the output dir produced by the command and to be uploaded to 
+          netlify.
         default: '.build/'
         required: false
         type: string
@@ -60,12 +64,13 @@ jobs:
           --extra-experimental-features "nix-command flakes" \
           develop \
           --command bash -c "${{ inputs.command }}"
-          
+
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v2
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.netlify-auth-token }}
         NETLIFY_SITE_ID: ${{ secrets.netlify-site-id }}
+        DEBUG: true
       with:
         production-branch: 'main'
         production-deploy: ${{ github.ref_name == 'main' }}
@@ -77,4 +82,4 @@ jobs:
         enable-commit-status: true
         enable-github-deployment: true
         fails-without-credentials: true
-      # timeout-minutes: 3
+      timeout-minutes: 3
