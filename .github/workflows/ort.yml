@@ -7,7 +7,7 @@ on:
   workflow_call:
     inputs:
       ort-cli-args:
-        default: '--force-overwrite --stacktrace'
+        default: '--stacktrace'
         description: |
           List of arguments to pass to ORT CLI, applies to all commands.
         required: false

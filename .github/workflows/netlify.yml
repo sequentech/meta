@@ -70,7 +70,6 @@ jobs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.netlify-auth-token }}
         NETLIFY_SITE_ID: ${{ secrets.netlify-site-id }}
-        DEBUG: true
       with:
         production-branch: 'main'
         production-deploy: ${{ github.ref_name == 'main' }}
