@@ -4,7 +4,7 @@
 
 ---
 rule_violations:
-- message: "The package (Cargo|Crate)::(bulletin-board|braid|strand|sequent-core|new-ballot-verifier|misc-tools):.* has the declared ScanCode copyleft catalogized license AGPL-3.0-only."
+- message: "The package (Cargo|Crate|PIP)::(bulletin-board|braid|strand|sequent-core|new-ballot-verifier|misc-tools-with-requirements-requirements.txt):.* has the declared ScanCode copyleft catalogized license AGPL-3.0-only."
   reason: "LICENSE_ACQUIRED_EXCEPTION"
   comment: "It's our own sequent open source project so it's not a problem."
 - message: "The project Cargo::(bulletin-board|braid|strand|sequent-core|new-ballot-verifier):.* has the dependency Crate::(bulletin-board|braid|strand|sequent-core|new-ballot-verifier):.* licensed under the ScanCode copyleft categorized license AGPL-3.0-only."
