@@ -5,7 +5,8 @@
 ---
 rule_violations:
 # 1st-gen
-- message: "The package PIP::uwsgi:.* has the declared ScanCode copyleft catalogized license GPL-2.0-or-later."
+
+- message: "The project PIP::.*:.* has the dependency PyPI::uwsgi:.* licensed under the ScanCode copyleft categorized license GPL-2.0-or-later."
   reason: "DYNAMIC_LINKAGE_EXCEPTION"
   comment: "This is actually a GPL-2.0 with a linking exception, allowing not to have to relicense any linking code, such as our case."
 - message: "The package PIP::(misc-tools|frestq)-with-requirements-requirements.txt:.* has the declared ScanCode copyleft catalogized license AGPL-3.0-only."
