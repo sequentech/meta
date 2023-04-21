@@ -57,5 +57,6 @@ jobs:
           ort-config-repository: 'https://github.com/sequentech/meta.git'
           fail-on: issues,violations
           report-formats: SpdxDocument,Excel,StaticHtml,WebApp
+          image: 'ghcr.io/alliander-opensource/ort-container:date-20230401'
           ort-cli-args: ${{ inputs.ort-cli-args }}
           ort-cli-analyze-args: ${{ inputs.ort-cli-analyze-args }}
