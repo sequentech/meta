@@ -31,8 +31,6 @@ body:
     attributes:
       label: Tasks
       description: |
-        Tasks lists to solve this problem 
-      value: |
         ```[tasklist]
         # Tasks
         - [ ] Task 1
