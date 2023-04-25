@@ -1,0 +1,64 @@
+# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+# Problems - Red
+- name: bug
+  color: "d73a4b"
+  description: Something isn't working
+
+- name: security
+  color: "d73a4b"
+  description: Security update needed
+
+- name: 'status: blocked'
+  color: "d73a4b"
+  description: Blocked from progress
+
+# Improvements - Blue
+- name: enhancement
+  color: "0366d5"
+  description: New feature or request
+
+- name: documentation
+  color: "0366d5"
+  description: Improvements or additions to documentation
+
+- name: dependencies
+  color: "0366d5"
+  description: Pull requests that update a dependency file
+
+- name: infrastructure
+  color: "0366d5"
+  description: Related to devops
+
+# Community - Purple
+- name: 'type: good first issue'
+  color: "7057fe"
+  description: Good for newcomers
+
+- name: 'status: help wanted'
+  color: "7057fe"
+  description: Extra attention is needed
+
+# Grooming - Magenta
+- name: 'type: question'
+  color: "d876e2"
+  description: Further information is requested
+
+- name: 'status: triage'
+  color: "d876e2"
+  description: Waiting to be triaged
+
+# Inactive - Grey
+- name: 'status: wontfix'
+  color: "cfd3d8"
+  description: This will not be worked on
+
+- name: 'status: duplicate'
+  color: "cfd3d8"
+  description: This issue or pull request already exists
+
+- name: 'status: invalid'
+  color: "cfd3d8"
+  description: This doesn't seem right
