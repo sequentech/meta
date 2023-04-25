@@ -31,6 +31,8 @@ body:
     attributes:
       label: Tasks
       description: |
+        Tasks lists to solve this issue 
+      value: |
         ```[tasklist]
         # Tasks
         - [ ] Task 1
@@ -45,6 +47,7 @@ body:
         # Stable PRs
         - [ ] Task 1
         ```
+      render: markdown
     validations:
       required: false
   - type: textarea
