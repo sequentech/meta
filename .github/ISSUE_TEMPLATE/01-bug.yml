@@ -5,7 +5,7 @@
 name: 🐞 Bug
 description: Submit a bug if something isn't working as expected.
 title: "🐞 <title>"
-labels: [bug, triage]
+labels: ['bug', 'status: triage']
 body:
   - type: checkboxes
     id: checklist
