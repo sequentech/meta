@@ -12,7 +12,7 @@ If you believe you have found a security vulnerability in any Sequent-owned repo
 
 **Please do not report security vulnerabilities through public Sequent issues, discussions, or pull requests.**
 
-Instead, please report vulnerabilities following [Github instructions to privately report security vulnerabilities](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability#privately-reporting-a-security-vulnerability) in the [sequentech/meta repository -> Security tab](https://github.com/sequentech/meta/security). Use that to report a security vulnerability for **any** Sequent software products and services.
+Instead, please report vulnerabilities [privately using this link](https://github.com/sequentech/meta/security/advisories/new).
 
 Please include as much of the information listed below as you can to help us better understand and resolve the issue:
 
@@ -24,5 +24,4 @@ Please include as much of the information listed below as you can to help us bet
   * Proof-of-concept or exploit code (if possible)
   * Impact of the issue, including how an attacker might exploit the issue
 
-This information will help us triage your report more quickly. We recommend you
-to follow [Github Security Lab report template](https://github.com/github/securitylab/blob/main/docs/report-template.md).
+This information will help us triage your report more quickly.

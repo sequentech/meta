@@ -13,9 +13,7 @@ body:
       label: Preflight checklist
       description: 
       options:
-        - label: 
-          "I could not find a solution in the existing issues, docs, nor 
-        discussions."
+        - label: "I could not find a solution in the existing issues, docs, nor discussions."
           required: true
   - type: textarea
     attributes:

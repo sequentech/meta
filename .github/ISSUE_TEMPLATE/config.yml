@@ -13,7 +13,3 @@ contact_links:
     url: https://discord.gg/WfvSTmcdY8
     about:
       Hang out with other Sequent community members to ask and answer questions.
-  - name: Security Vulnerabilities
-    url: https://github.com/sequentech/meta/security/policy
-    about:
-      Review our security policy for more details.
