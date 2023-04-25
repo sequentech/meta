@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+blank_issues_enabled: false
+contact_links:
+  - name: Github Discussions
+    url: https://github.com/sequentech/meta/discussions
+    about:
+      Please ask and answer questions here, show your implementations and
+      discuss ideas.
+  - name: Discord Chat
+    url: https://discord.gg/WfvSTmcdY8
+    about:
+      Hang out with other Sequent community members to ask and answer questions.
+  - name: Security Vulnerabilities
+    url: https://github.com/sequentech/meta/security/policy
+    about:
+      Review our security policy for more details.
