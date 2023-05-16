@@ -84,3 +84,4 @@ jobs:
         alert-threshold: '${{ inputs.alert-threshold }}'
         comment-on-alert: true
         fail-on-alert: false
+        summary-always: true
