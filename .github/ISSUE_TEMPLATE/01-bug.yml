@@ -64,12 +64,12 @@ body:
 
         ```[tasklist]
         # Master PRs
-        - [ ] 
+        - [ ] PR 1
         ```
 
         ```[tasklist]
         # Stable PRs
-        - [ ] Task 1
+        - [ ] PR 1
         ```
     validations:
       required: false
