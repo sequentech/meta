@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: Release
+description: Generate a new release of the platform.
+title: "Release <version>"
+labels: [release]
+body:
+  - type: textarea
+    attributes:
+      label: Tasks
+      description: |
+        Tasks lists to close this issue 
+      value: |
+        ```[tasklist]
+        # Tasks
+        - [ ] Tag the release
+        - [ ] Create releases with automatic release notes in github
+        - [ ] Test the release
+        - [ ] Deploy release in stable <major>xx deployment
+        - [ ] Deploy release in demo
+        - [ ] Deploy release in web-demo
+        ```
+    validations:
+      required: false

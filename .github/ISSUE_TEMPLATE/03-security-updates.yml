@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+#
+# SPDX-License-Identifier: AGPL-3.0-only
+
+name: Security updates
+description: Perform security updates before creating a release.
+title: "Security updates"
+labels: [security]
+body:
+  - type: textarea
+    attributes:
+      label: Tasks
+      description: |
+        Tasks lists to close this issue 
+      value: |
+        ```[tasklist]
+        # Tasks
+        - [ ] Perform the security updates
+        ```
+
+        ```[tasklist]
+        # Master PRs
+        - [ ] PR 1
+        ```
+
+        ```[tasklist]
+        # Stable PRs
+        - [ ] PR 1
+        ```
+    validations:
+      required: false

@@ -15,42 +15,44 @@ body:
       options:
         - label: "I could not find a solution in the existing issues, docs, nor discussions."
           required: true
+        - label: "I have attached screenshots and/or the specific steps to reproduce this issue."
+          required: true
+        - label: "I have attached a minimal `election.json` configuration to reproduce this issue (provide one for each different use-case)."
+          required: true
   - type: textarea
     attributes:
       label: Current Behavior
-      description: A concise description of what you're experiencing.
+      description: A concise description of what you're experiencing, including screenshots if possible.
     validations:
       required: true
   - type: textarea
     attributes:
       label: Expected Behavior
-      description: A concise description of what you expected to happen.
+      description: A concise description of what you expected to happen instead.
     validations:
       required: true
   - type: textarea
     attributes:
       label: Steps To Reproduce
-      description: Steps to reproduce the behavior.
-      placeholder: |
-        1. In this environment...
-        2. With this config...
-        3. Run '...'
-        4. See error...
+      description: |
+        Steps to reproduce the behavior, including `election.json` if possible.
+        Tip: You can attach images or config files files by clicking this area to highlight it and then dragging files in.
+      value: |
+        1. In the Admin Portal, click in `New Election` in the sidebar, then click in `Create Election`.
+        2. Click in `Actions` button and then click in `Edit JSON` in the popup moenu and paste the following election configuration json into the modal dialog and accept: `<insert election-config.json here>`.
+        3. Then click in `Actions` button and then click in `Live preview` to open the voting booth.
+        4. In the start screen, the error appears as highlighted in red in the screenshot below: `<insert-screenshot-here>`.
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Environment
-      description: |
-        examples:
-          - **OS**: Ubuntu 20.04
-          - **Web browser**: Google Chrome 112.0.5615.137 (Official Build) (arm64)
       value: |
-        - OS:
-        - Web browser:
-      render: markdown
+          - **OS**: Mac OS X Ventura
+          - **Web browser**: Google Chrome 112.0.5615.137 (Official Build) (arm64)
+          - **Sequent Platform Version**: 10.0.0
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Tasks
@@ -59,11 +61,13 @@ body:
       value: |
         ```[tasklist]
         # Tasks
-        - [ ] Task 1
+        - [ ] Issue has been triaged
+        - [ ] Successful replication of the defect
+        - [ ] Successful defect resolution merged
         ```
 
         ```[tasklist]
-        # Master PRs
+        # Main PRs
         - [ ] PR 1
         ```
 
@@ -71,14 +75,5 @@ body:
         # Stable PRs
         - [ ] PR 1
         ```
-    validations:
-      required: false
-  - type: textarea
-    attributes:
-      label: Additional context
-      description: |
-        Links? References? Screenshots? Possible Solution? Anything that will give us more context about the issue you are encountering!
-
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
     validations:
       required: false
