@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+# SPDX-FileCopyrightText: 2023-2024 Sequent Tech Inc <legal@sequentech.io>
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
@@ -33,13 +33,17 @@ body:
       description: |
         Tasks lists to solve this issue 
       value: |
+        # Screenshots
+
+        <empty>
+
         ```[tasklist]
         # Tasks
         - [ ] Task 1
         ```
 
         ```[tasklist]
-        # Master PRs
+        # Main PRs
         - [ ] PR 1
         ```
 

@@ -1,10 +1,10 @@
-# SPDX-FileCopyrightText: 2023 Sequent Tech Inc <legal@sequentech.io>
+# SPDX-FileCopyrightText: 2023-2024 Sequent Tech Inc <legal@sequentech.io>
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name: Security updates
+name: 🛡 Security updates
 description: Perform security updates before creating a release.
-title: "Security updates"
+title: "🛡 Security updates"
 labels: [security]
 body:
   - type: textarea
@@ -19,7 +19,7 @@ body:
         ```
 
         ```[tasklist]
-        # Master PRs
+        # Main PRs
         - [ ] PR 1
         ```
 
