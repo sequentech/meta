@@ -28,7 +28,7 @@
   color: "0366d5"
   description: Pull requests that update a dependency file
 
-- name: infrastructure
+- name: beyond
   color: "0366d5"
   description: Related to devops
 
