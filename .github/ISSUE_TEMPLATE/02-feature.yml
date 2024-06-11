@@ -46,11 +46,6 @@ body:
         # Main PRs
         - [ ] PR 1
         ```
-
-        ```[tasklist]
-        # Stable PRs
-        - [ ] PR 1
-        ```
     validations:
       required: false
   - type: textarea
