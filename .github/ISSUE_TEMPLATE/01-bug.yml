@@ -17,8 +17,8 @@ body:
           required: true
         - label: "I have attached screenshots and/or the specific steps to reproduce this issue."
           required: true
-        - label: "I have attached a minimal `election.json` configuration to reproduce this issue (provide one for each different use-case)."
-          required: true
+        #- label: "I have attached a minimal `election.json` configuration to reproduce this issue (provide one for each different use-case)."
+        #  required: true
   - type: textarea
     attributes:
       label: Current Behavior
@@ -31,28 +31,28 @@ body:
       description: A concise description of what you expected to happen instead.
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: Steps To Reproduce
-      description: |
-        Steps to reproduce the behavior, including `election.json` if possible.
-        Tip: You can attach images or config files files by clicking this area to highlight it and then dragging files in.
-      value: |
-        1. In the Admin Portal, click in `New Election` in the sidebar, then click in `Create Election`.
-        2. Click in `Actions` button and then click in `Edit JSON` in the popup moenu and paste the following election configuration json into the modal dialog and accept: `<insert election-config.json here>`.
-        3. Then click in `Actions` button and then click in `Live preview` to open the voting booth.
-        4. In the start screen, the error appears as highlighted in red in the screenshot below: `<insert-screenshot-here>`.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Environment
-      value: |
-          - **OS**: Mac OS X Ventura
-          - **Web browser**: Google Chrome 112.0.5615.137 (Official Build) (arm64)
-          - **Sequent Platform Version**: 10.0.0
-    validations:
-      required: true
+  #- type: textarea
+  #  attributes:
+  #    label: Steps To Reproduce
+  #    description: |
+  #      Steps to reproduce the behavior, including `election.json` if possible.
+  #      Tip: You can attach images or config files files by clicking this area to highlight it and then dragging files in.
+  #    value: |
+  #      1. In the Admin Portal, click in `New Election` in the sidebar, then click in `Create Election`.
+  #      2. Click in `Actions` button and then click in `Edit JSON` in the popup moenu and paste the following election configuration json into the modal dialog and accept: `<insert election-config.json here>`.
+  #      3. Then click in `Actions` button and then click in `Live preview` to open the voting booth.
+  #      4. In the start screen, the error appears as highlighted in red in the screenshot below: `<insert-screenshot-here>`.
+  #  validations:
+  #    required: true
+  #- type: textarea
+  #  attributes:
+  #    label: Environment
+  #    value: |
+  #        - **OS**: Mac OS X Ventura
+  #        - **Web browser**: Google Chrome 112.0.5615.137 (Official Build) (arm64)
+  #        - **Sequent Platform Version**: 10.0.0
+  #  validations:
+  #    required: true
   - type: textarea
     attributes:
       label: Tasks
@@ -70,10 +70,6 @@ body:
         # Main PRs
         - [ ] PR 1
         ```
-
-        ```[tasklist]
-        # Stable PRs
-        - [ ] PR 1
         ```
     validations:
       required: false
