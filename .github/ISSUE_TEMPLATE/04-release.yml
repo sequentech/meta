@@ -2,10 +2,10 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-only
 
-name: Release
+name: [1st-gen] New Release
 description: Generate a new release of the platform.
-title: "Release <version>"
-labels: [release]
+title: "[Release <version>"
+labels: [release, 1st-gen]
 body:
   - type: textarea
     attributes:
