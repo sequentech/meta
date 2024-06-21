@@ -70,6 +70,5 @@ body:
         # Main PRs
         - [ ] PR 1
         ```
-        ```
     validations:
       required: false
